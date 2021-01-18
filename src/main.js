@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
+/* 引入公用filter */
+import filter from '@/mixin/filter'
+
+Vue.mixin(filter)
 
 Vue.config.productionTip = false
 
