@@ -12,5 +12,15 @@ module.exports = {
         "@": path.resolve(__dirname, './src')
       }
     }
+  },
+  css:{
+    requireModuleExtension: true,
+    loaderOptions:{
+      less:{
+        lessOptions:{
+          javascriptEnabled: true
+        }
+      }
+    }
   }
 }
