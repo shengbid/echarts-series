@@ -3,9 +3,13 @@ import App from './App.vue'
 import router from './router'
 /* 引入公用filter */
 import filter from '@/mixin/filter'
-import { Button } from 'ant-design-vue'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
-Vue.component(Button.name, Button)
+var echarts = require('echarts')
+Vue.prototype.$echart = echarts 
+
+Vue.use(ElementUI)
 
 Vue.mixin(filter)
 

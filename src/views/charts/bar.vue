@@ -1,12 +1,12 @@
 <template>
   <div>
-    line
+    bar
   </div>
 </template>
 
 <script>
 export default {
-  name: 'lineChart'
+  name: 'barChart'
 }
 </script>
 
