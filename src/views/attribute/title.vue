@@ -1,9 +1,12 @@
 <template>
-  <div class="line-container">
+  <div class="container">
+    <h2>title + legend + toolbox常用属性配置</h2>
+    <div class="tip">tip: 这里只展示常用配置修改,其他更多属性查看官网对应配置项
+      <a href="https://echarts.apache.org/zh/option.html#title" target="_blank">https://echarts.apache.org/zh/option.html#title</a></div>
     <ul class="attribute-list clearfix">
       <li class="item">
         <span class="title">titile标题设置</span>
-        <ul class="clearfix">
+        <ul>
           <li class="subItem">
             <span class="sub-tit">是否显示: </span>
             <el-switch v-model="title.show" @change="onChange1" />
@@ -14,30 +17,42 @@
             top<el-input-number v-model="title.top" controls-position="right" size="mini" @change="positionClick2" />
             right<el-input-number v-model="title.right" controls-position="right" size="mini" @change="positionClick3" />
             bottom<el-input-number v-model="title.bottom" controls-position="right" size="mini" @change="positionClick4" />
+            <div class="tip">tip: 支持数值,百分比,方向值:'top','left','bottom'</div>
           </li>
           <li class="subItem">
             <span class="sub-tit">字体样式: </span>
             颜色<el-color-picker v-model="title.textStyle.color" @change="changeColor1"></el-color-picker>
             大小<el-input-number v-model="title.textStyle.fontSize" :min="12" :max="36" controls-position="right" size="mini" @change="textStyleClick1" />
+            <div class="tip">tip: 其他属性:如: 背景色,边框等</div>
           </li>
         </ul>
         
       </li>
       <li class="item">
         <span class="title">legend图例设置</span>
-        <ul class="clearfix">
+        <ul>
           <li class="subItem">
             <span class="sub-tit">是否显示: </span>
-            <el-switch v-model="legend.show" />
+            <el-switch v-model="legend.show" @change="onChange2" />
           </li>
           <li class="subItem">
             <span class="sub-tit">宽高: </span>
-            宽 <el-input-number v-model="legend.width" :disabled="legend.orient === 'vertical'" controls-position="right" size="mini" />
-            高 <el-input-number v-model="legend.height" :disabled="legend.orient === 'horizontal'" controls-position="right" size="mini" />
+            宽 <el-input-number 
+                v-model="legend.width" 
+                :disabled="legend.orient === 'vertical'" 
+                controls-position="right" 
+                @change="changeWidth"
+                size="mini" />
+            高 <el-input-number 
+                v-model="legend.height" 
+                :disabled="legend.orient === 'horizontal'" 
+                controls-position="right" 
+                @change="changeHeight"
+                size="mini" />
           </li>
           <li class="subItem">
             <span class="sub-tit">布局朝向: </span>
-            <el-select v-model="legend.orient" placeholder="请选择">
+            <el-select v-model="legend.orient" @change="changeOrient">
               <el-option
                 label="水平"
                 value="horizontal">
@@ -49,8 +64,55 @@
             </el-select>
           </li>
           <li class="subItem">
-            <el-button type="primary" size="mini" @click="changelegend">设置</el-button>
+            <span class="sub-tit">位置(其他三个属性一样设置): </span>
+            left<el-input-number v-model="legend.left" controls-position="right" size="mini" @change="legendPositClick1" />
           </li>
+          <li class="subItem">
+            <span class="sub-tit">字体样式: </span>
+            颜色<el-color-picker v-model="legend.textStyle.color" @change="changeColor2"></el-color-picker>
+            大小<el-input-number v-model="legend.textStyle.fontSize" :min="12" :max="36" controls-position="right" size="mini" @change="textStyleClick2" />
+          </li>
+
+        </ul>
+      </li>
+      <li class="item">
+        <span class="title">toolbox工具栏设置</span>
+        <ul>
+          <li class="subItem">
+            <span class="sub-tit">是否显示: </span>
+            <el-switch v-model="toolbox.show" @change="onChange3" />
+          </li>
+          <li class="subItem">
+            <span class="sub-tit">布局朝向: </span>
+            <el-select v-model="toolbox.orient" @change="changeOrient1">
+              <el-option
+                label="水平"
+                value="horizontal">
+              </el-option>
+              <el-option
+                label="垂直"
+                value="vertical">
+              </el-option>
+            </el-select>
+          </li>
+          <li class="subItem">
+            <span class="sub-tit">位置(其他属性一样设置): </span>
+            right<el-input-number v-model="toolbox.right" controls-position="right" size="mini" @change="toolboxPositClick1" />
+            top<el-input-number v-model="toolbox.top" controls-position="right" size="mini" @change="toolboxPositClick2" />
+          </li>
+          <li class="subItem">
+            <span class="sub-tit">工具项: </span>
+            <el-checkbox-group v-model="toolbox.feature" @change="changeFeature">
+              <el-checkbox label="saveAsImage">保存图片</el-checkbox>
+              <el-checkbox label="restore">重置</el-checkbox>
+              <el-checkbox label="dataView">数据视图</el-checkbox>
+              <el-checkbox label="dataZoom">区域缩放</el-checkbox>
+              <el-checkbox label="magicType">类型切换</el-checkbox>
+              <el-checkbox label="myTool">自定义</el-checkbox>
+            </el-checkbox-group>
+          </li>
+          <div class="tip">tip: 可以设置图标的颜色与提示语样式,其他属性设置请查看官网toolbox配置</div>
+
         </ul>
       </li>
     </ul>
@@ -67,17 +129,18 @@ export default {
     return {
       option: {
         title: { 
-          text: '折线图属性集合',
+          text: '通用属性设置',
           textStyle: {}
          },
         tooltip: {
           trigger: 'axis'
         },
         legend: {
+          textStyle: {}
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '8%',
             bottom: '3%',
             containLabel: true
         },
@@ -137,17 +200,24 @@ export default {
       },
       legend: {
         show: true,
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        width: 200,
-        height: 50,
+        left: 150,
+        width: 450,
+        height: 120,
         orient: 'horizontal',
         textStyle: {
           color: '#333',
-          fontSize: '18'
+          fontSize: '12'
         }
+      },
+      toolbox: {
+        show: true,
+        right: 0,
+        orient: 'horizontal',
+        textStyle: {
+          color: '#333',
+          fontSize: '12'
+        },
+        feature: ['saveAsImage']
       }
     }
   },
@@ -187,6 +257,9 @@ export default {
 
     // 字体设置
     changeColor1(val) {
+      // 设置的时候option.title里面要有textStyle这个属性,可以做个判断
+      this.option.title.textStyle = this.option.title.textStyle ? this.option.title.textStyle : {}
+
       this.option.title.textStyle.color = val
       this.lineChart.setOption(this.option)
     },
@@ -198,22 +271,131 @@ export default {
 
     /** --------------------legend相关设置开始------------------ */
     // legend显示
-    changelegend() {
-      this.option.legend.show = this.legend.show
+    onChange2(checked) {
+      this.option.legend.show = checked
       this.lineChart.setOption(this.option)
-    }
+    },
+    // 宽高
+    changeWidth(val) {
+      this.option.legend.width = val
+      this.lineChart.setOption(this.option)
+    },
+    changeHeight(val) {
+      this.option.legend.height = val
+      this.lineChart.setOption(this.option)
+    },
+    // 朝向
+    changeOrient(val) {
+      this.option.legend.orient = val
+      this.lineChart.setOption(this.option)
+    },
+    // 位置
+    legendPositClick1(val) {
+      this.option.legend.left = val
+      this.lineChart.setOption(this.option)
+    },
+    // 字体设置
+    changeColor2(val) {
+      this.option.legend.textStyle.color = val
+      this.lineChart.setOption(this.option)
+    },
+    textStyleClick2(val) {
+      this.option.legend.textStyle.fontSize = val
+      this.lineChart.setOption(this.option)
+    },
     /**--------------legend相关设置end------------------------ */
+
+    /** --------------------toolbox相关设置开始------------------ */
+    // 显示
+    onChange3(checked) {
+      this.option.toolbox.show = checked
+      this.lineChart.setOption(this.option)
+    },
+    // 朝向
+    changeOrient1(val) {
+      this.option.toolbox.orient = val
+      this.lineChart.setOption(this.option)
+    },
+    // 位置
+    toolboxPositClick1(val) {
+      this.option.toolbox.right = val
+      this.lineChart.setOption(this.option)
+    },
+    toolboxPositClick2(val) {
+      this.option.toolbox.top = val
+      this.lineChart.setOption(this.option)
+    },
+    // 工具项
+    changeFeature(val) {
+      console.log(val)
+      this.option.toolbox.feature = {}
+      if (val.length) {
+        val.some(item => {
+          if (item === 'myTool') { // 自定义
+            const myTool = { 
+              show: true,
+              title: '自定义方法',
+              icon: `image://${window.location.origin}/mytool.png`, // 图片在public目录下
+              onclick: () =>{
+                this.$message('这是自定义方法')
+              }
+            }
+            this.option.toolbox.feature.myTool = myTool
+          } else if (item === 'magicType') {
+            this.option.toolbox.feature.magicType= {
+              type: ["line", "bar"]
+            }
+          } else if (item === 'dataView') {
+            // 可以自己设置数据格式和展示的内容
+            const optionToContent = function(opt) {
+              const axisData = opt.xAxis[0].data;
+              const series = opt.series;
+              let table = '<table style="width:100%;text-align:center;border:1px solid #ddd"><tbody><tr>'
+                          + '<td>时间</td>'
+                          + '<td>' + series[0].name + '</td>'
+                          + '<td>' + series[1].name + '</td>'
+                          + '<td>' + series[2].name + '</td>'
+                          + '<td>' + series[3].name + '</td>'
+                          + '<td>' + series[4].name + '</td>'
+                          + '</tr>';
+              for (let i = 0, l = axisData.length; i < l; i++) {
+                  table += '<tr>'
+                          + '<td>' + axisData[i] + '</td>'
+                          + '<td>' + series[0].data[i] + '</td>'
+                          + '<td>' + series[1].data[i] + '</td>'
+                          + '<td>' + series[2].data[i] + '</td>'
+                          + '<td>' + series[3].data[i] + '</td>'
+                          + '<td>' + series[4].data[i] + '</td>'
+                          + '</tr>';
+              }
+              table += '</tbody></table>';
+              return table;
+            }
+            this.option.toolbox.feature.dataView= {
+              readOnly: true, // 只读
+              optionToContent,
+              lang: ['数据视图', '关闭', ''] // 页面上展示的标题和按钮,默认为['数据视图', '关闭', '刷新']
+            }
+
+          } else {
+            this.option.toolbox.feature[item] = {}
+          }
+        })
+      }
+      this.lineChart.setOption(this.option, true)
+    }
+
+
+    /**--------------toolbox相关设置end------------------------ */
   }
 }
 </script>
 
 <style lang="less">
-  .line-container {
-    // display: flex;
+  .container {
     .chart-container {
-      // flex: 1;
       #lineChart {
-        width: 750px;
+        width: 800px;
         height: 400px;
       }
     }
@@ -222,9 +404,10 @@ export default {
       margin-top: 10px;
       margin-bottom: 30px;
       border: 1px solid #dcdcdc;
-      // flex-basis: 600px;
       .item {
         margin-bottom: 20px;
+        float: left;
+        width: 50%;
         .title {
           font-size: 16px;
           font-weight: bold;
@@ -236,6 +419,9 @@ export default {
             margin-right: 10px;
             font-weight: bold;
           }
+        }
+        .tip {
+          color:#c1c1c1;
         }
       }
     }

@@ -55,19 +55,19 @@ export default {
           children: [
             {
               key: '1-1',
-              name: 'title',
+              name: 'title+legend+toolbox',
               icon: 'line-chart',
               path: 'titleAttr1',
             },
             {
               key: '1-2',
-              name: 'legend',
+              name: 'grid+tooltip',
               icon: 'bar-chart',
               path: 'titleAttr2'
             },
             {
               key: '1-3',
-              name: 'lgend',
+              name: 'xAxis',
               icon: 'pie-chart',
               path: 'titleAttr3'
             }

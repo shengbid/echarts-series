@@ -5,6 +5,7 @@ import router from './router'
 import filter from '@/mixin/filter'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import "./style/common.less";
 
 var echarts = require('echarts')
 Vue.prototype.$echart = echarts 
