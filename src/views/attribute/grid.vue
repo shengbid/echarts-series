@@ -60,9 +60,11 @@
 
       <li class="item">
         <span class="title">grid多表格绘图网格设置</span>
+        <el-switch v-model="ishow" @change="ishow = ishow" />
         <div class="tip">tip: 这种情况适合数据联动的情况,即几个表格数据是通用的.
-          如果是完全不相同的数据,不建议使用.</div>
-        <ul>
+          如果是完全不相同的数据,不建议使用.
+        </div>
+        <ul v-if="ishow">
           <li class="subItem">
             <span class="sub-tit">折线图位置(百分比设置): </span>
             left<el-input-number v-model="grid1[0].left" controls-position="right" size="mini" @change="linePositClick1" /> %
@@ -216,7 +218,8 @@ export default {
       grid1: [
         { left: 5, top: 55, width: 90, height: 45},
         { left: 50, top: 25, width: 90, height: 90}
-      ]
+      ],
+      ishow: false
     }
   },
   created() {},
@@ -400,12 +403,12 @@ export default {
   .chart-container {
     #lineChart1 {
       width: 50%;
-      height: 600px;
+      height: 400px;
       float: left;
     }
     #lineChart2 {
       width: 50%;
-      height: 600px;
+      height: 500px;
       float: left;
     }
   }
