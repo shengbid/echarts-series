@@ -4,7 +4,7 @@
     <div class="tip">tip: 这里只展示常用配置修改,其他更多属性查看官网对应配置项
       <a href="https://echarts.apache.org/zh/option.html#grid" target="_blank">https://echarts.apache.org/zh/option.html#grid</a></div>
     <ul class="attribute-list clearfix">
-      <li class="item">
+      <li class="item fitem">
         <span class="title">grid绘图网格设置</span>
         <div class="tip">tip: 相当于图表相对于画布的位置</div>
         <ul>
@@ -19,7 +19,7 @@
         </ul>
       </li>
 
-      <li class="item">
+      <li class="item fitem">
         <span class="title">tooltip提示框设置</span>
         <ul>
           <li class="subItem">
@@ -58,7 +58,7 @@
         </ul>
       </li>
 
-      <li class="item">
+      <li class="item fitem">
         <span class="title">grid多表格绘图网格设置</span>
         <el-switch v-model="ishow" @change="ishow = ishow" />
         <div class="tip">tip: 这种情况适合数据联动的情况,即几个表格数据是通用的.
@@ -219,7 +219,7 @@ export default {
         { left: 5, top: 55, width: 90, height: 45},
         { left: 50, top: 25, width: 90, height: 90}
       ],
-      ishow: false
+      ishow: true
     }
   },
   created() {},

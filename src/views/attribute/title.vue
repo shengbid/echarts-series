@@ -4,7 +4,7 @@
     <div class="tip">tip: 这里只展示常用配置修改,其他更多属性查看官网对应配置项
       <a href="https://echarts.apache.org/zh/option.html#title" target="_blank">https://echarts.apache.org/zh/option.html#title</a></div>
     <ul class="attribute-list clearfix">
-      <li class="item">
+      <li class="item fitem">
         <span class="title">titile标题设置</span>
         <ul>
           <li class="subItem">
@@ -28,7 +28,7 @@
         </ul>
         
       </li>
-      <li class="item">
+      <li class="item fitem">
         <span class="title">legend图例设置</span>
         <ul>
           <li class="subItem">
@@ -75,7 +75,7 @@
 
         </ul>
       </li>
-      <li class="item">
+      <li class="item fitem">
         <span class="title">toolbox工具栏设置</span>
         <ul>
           <li class="subItem">
@@ -392,38 +392,5 @@ export default {
 </script>
 
 <style lang="less">
-  .container {
-    .chart-container {
-      #lineChart {
-        width: 800px;
-        height: 400px;
-      }
-    }
-    .attribute-list {
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 30px;
-      border: 1px solid #dcdcdc;
-      .item {
-        margin-bottom: 20px;
-        float: left;
-        width: 50%;
-        .title {
-          font-size: 16px;
-          font-weight: bold;
-          margin-right: 15px;
-        }
-        .subItem {
-          padding: 10px 0;
-          .sub-tit {
-            margin-right: 10px;
-            font-weight: bold;
-          }
-        }
-        .tip {
-          color:#c1c1c1;
-        }
-      }
-    }
-  }
+
 </style>

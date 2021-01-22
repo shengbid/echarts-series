@@ -24,7 +24,7 @@ const routes = [{
     },
     {
       path: 'titleAttr3',
-      component: () => import('@/views/attribute/grid1'),
+      component: () => import('@/views/attribute/xAxis'),
       name: 'titleAttr3',
       meta: { parentKey: '1', key: '1-3'}
     },
