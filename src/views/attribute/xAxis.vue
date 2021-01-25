@@ -38,17 +38,23 @@
               <el-col :span="4">
                 <div class="grid-content bg-purple">
                   颜色
-
+                  <el-color-picker v-model="xAxis.nameTextStyle.color" @change="changeColor"></el-color-picker>
                 </div>
               </el-col>
               <el-col :span="4">
                 <div class="grid-content bg-purple">
                   字体大小
+                  <el-input-number v-model="xAxis.nameTextStyle.fontSize" :min="12" :max="36" controls-position="right" size="mini" @change="textStyleClick" />
                 </div>
               </el-col>
               <el-col :span="4">
                 <div class="grid-content bg-purple">
                   背景
+                  <el-select v-model="xAxis.nameTextStyle.background" @change="backgroundChange">
+                    <el-option label="无" value="none"></el-option>
+                    <el-option label="背景色" value="color"></el-option>
+                    <el-option label="背景图" value="img"></el-option>
+                  </el-select>
                 </div>
               </el-col>
             </el-row>
@@ -80,6 +86,7 @@ export default {
         xAxis: [{
           name: '星期',
           type: "category",
+          nameTextStyle: {},
           data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         }],
         yAxis: [{
@@ -100,7 +107,8 @@ export default {
         nameGap: '15',
         nameTextStyle: {
           color: '#333',
-          fontSize: '12'
+          fontSize: '12',
+          background: 'none'
         },
       }
     }
@@ -134,8 +142,27 @@ export default {
       this.option.xAxis[0].nameGap = val
       this.lineChart.setOption(this.option)
     },
-    nameChange4(val) {
-      this.option.xAxis[0].bottom = val
+    changeColor(val) {
+      this.option.xAxis[0].nameTextStyle.color = val
+      this.lineChart.setOption(this.option)
+    },
+    textStyleClick(val) {
+      this.option.xAxis[0].nameTextStyle.fontSize = val
+      this.lineChart.setOption(this.option)
+    },
+    backgroundChange(val) {
+      if (val === 'color') {
+        this.option.xAxis[0].nameTextStyle.backgroundColor = 'red'
+      } else if(val === 'img') {
+        this.option.xAxis[0].nameTextStyle.backgroundColor = {
+          image: `${window.location.origin}/mytool.png`,
+          width: 60,
+          height: 60
+        } // 图片在public目录下
+      } else {
+        this.option.xAxis[0].nameTextStyle.backgroundColor = 'transparent'
+      }
+      console.log(this.option)
       this.lineChart.setOption(this.option)
     }
     /**--------------title相关设置end------------------------ */

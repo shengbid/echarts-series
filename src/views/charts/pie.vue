@@ -1,12 +1,17 @@
 <template>
   <div>
-    pie
+    <spanTable></spanTable>
   </div>
 </template>
 
 <script>
+import spanTable from './spanTable'
 export default {
-  name: 'pieChart'
+  name: 'pieChart',
+  components: { spanTable },
+  methods: {
+
+  }
 }
 </script>
 
