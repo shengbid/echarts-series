@@ -23,10 +23,34 @@ const routes = [{
       meta: { parentKey: '1', key: '1-2'}
     },
     {
-      path: 'titleAttr3',
+      path: 'xAxisAttr',
       component: () => import('@/views/attribute/xAxis'),
-      name: 'titleAttr3',
+      name: 'xAxisAttr',
       meta: { parentKey: '1', key: '1-3'}
+    },
+    {
+      path: 'yAxisAttr',
+      component: () => import('@/views/attribute/yAxis'),
+      name: 'yAxisAttr',
+      meta: { parentKey: '1', key: '1-4'}
+    },
+    {
+      path: 'seriesAttr',
+      component: () => import('@/views/attribute/series'),
+      name: 'seriesAttr',
+      meta: { parentKey: '1', key: '1-5'}
+    },
+    {
+      path: 'eventChart',
+      component: () => import('@/views/attribute/event'),
+      name: 'eventChart',
+      meta: { parentKey: '1', key: '1-5'}
+    },
+    {
+      path: 'dataZoom',
+      component: () => import('@/views/attribute/dataZoom'),
+      name: 'dataZoom',
+      meta: { parentKey: '1', key: '1-7'}
     },
     {
       path: 'lineChart',

@@ -7,7 +7,7 @@
     <el-table
       :data="tableData2"
       :span-method="arraySpanMethod2"
-      :row-class-name="isCell ? setCellClass : ''"
+      :row-class-name="setCellClass"
       border
       @cell-mouse-enter="handleMouse"
       @cell-mouse-leave="handleMouseLeve"
@@ -260,7 +260,8 @@ export default {
     // 设置行样式
     setCellClass ({row, column, rowIndex, columnIndex}) {
       // 给当前鼠标移入的合并行第一行加上样式名
-      if (row.index === this.cellIndex) {
+      // console.log(55, this.cellIndex, row.firstIndex)
+      if (this.isCell && row.index === this.cellIndex) {
         return 'cellClass'
       }
     },

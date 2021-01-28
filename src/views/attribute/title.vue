@@ -36,6 +36,16 @@
             <el-switch v-model="legend.show" @change="onChange2" />
           </li>
           <li class="subItem">
+            <span class="sub-tit">是否选中: </span>
+            <el-checkbox-group v-model="legend.selected" @change="selectedChange">
+              <el-checkbox label="邮件营销">邮件营销</el-checkbox>
+              <el-checkbox label="联盟广告">联盟广告</el-checkbox>
+              <el-checkbox label="视频广告">视频广告</el-checkbox>
+              <el-checkbox label="直接访问">直接访问</el-checkbox>
+              <el-checkbox label="搜索引擎">搜索引擎</el-checkbox>
+            </el-checkbox-group>
+          </li>
+          <li class="subItem">
             <span class="sub-tit">宽高: </span>
             宽 <el-input-number 
                 v-model="legend.width" 
@@ -136,7 +146,8 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          textStyle: {}
+          textStyle: {},
+          selected: {}
         },
         grid: {
             left: '3%',
@@ -207,7 +218,9 @@ export default {
         textStyle: {
           color: '#333',
           fontSize: '12'
-        }
+        },
+        allSelected: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎'],
+        selected: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
       },
       toolbox: {
         show: true,
@@ -273,6 +286,16 @@ export default {
     // legend显示
     onChange2(checked) {
       this.option.legend.show = checked
+      this.lineChart.setOption(this.option)
+    },
+    selectedChange(val) {
+      this.legend.allSelected.some(item =>{
+        if (val.includes(item)) {
+          this.option.legend.selected[item] = true
+        } else {
+          this.option.legend.selected[item] = false
+        }
+      })
       this.lineChart.setOption(this.option)
     },
     // 宽高

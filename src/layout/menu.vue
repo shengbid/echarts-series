@@ -69,7 +69,31 @@ export default {
               key: '1-3',
               name: 'xAxis',
               icon: 'pie-chart',
-              path: 'titleAttr3'
+              path: 'xAxisAttr'
+            },
+            {
+              key: '1-4',
+              name: 'yAxis',
+              icon: 'pie-chart',
+              path: 'yAxisAttr'
+            },
+            {
+              key: '1-5',
+              name: 'series',
+              icon: 'pie-chart',
+              path: 'seriesAttr'
+            },
+            {
+              key: '1-6',
+              name: 'event事件',
+              icon: 'pie-chart',
+              path: 'eventChart'
+            },
+            {
+              key: '1-7',
+              name: 'dataZoom缩放',
+              icon: 'pie-chart',
+              path: 'dataZoom'
             }
           ]
         },
