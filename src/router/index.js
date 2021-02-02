@@ -69,6 +69,12 @@ const routes = [{
       component: () => import('@/views/charts/pie'),
       name: 'pieChart',
       meta: { parentKey: '2', key: '2-3'}
+    },
+    {
+      path: 'mapChart',
+      component: () => import('@/views/charts/map'),
+      name: 'mapChart',
+      meta: { parentKey: '2', key: '2-4'}
     }
   ]
 }]

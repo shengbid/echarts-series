@@ -119,6 +119,12 @@ export default {
               name: '饼图',
               icon: 'pie-chart',
               path: 'pieChart'
+            },
+            {
+              key: '2-4',
+              name: '地图',
+              icon: 'pie-chart',
+              path: 'mapChart'
             }
           ]
         }
