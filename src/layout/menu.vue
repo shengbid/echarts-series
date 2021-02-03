@@ -116,9 +116,9 @@ export default {
             },
             {
               key: '2-3',
-              name: '饼图',
+              name: 'k线图',
               icon: 'pie-chart',
-              path: 'pieChart'
+              path: 'candlestickChart'
             },
             {
               key: '2-4',

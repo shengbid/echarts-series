@@ -65,9 +65,9 @@ const routes = [{
       meta: { parentKey: '2', key: '2-2'}
     },
     {
-      path: 'pieChart',
-      component: () => import('@/views/charts/pie'),
-      name: 'pieChart',
+      path: 'candlestickChart',
+      component: () => import('@/views/charts/candlestick'),
+      name: 'candlestickChart',
       meta: { parentKey: '2', key: '2-3'}
     },
     {
