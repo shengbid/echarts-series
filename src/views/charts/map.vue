@@ -37,11 +37,6 @@ export default {
                 color: ['lightskyblue', 'yellow', 'orangered']
             }
         },
-        // geo: {
-        //   map: 'china',
-        //   zoom: 1.2,
-        //   roam: true,
-        // }
       },
       mapChart: '',
       level: 1
@@ -52,7 +47,7 @@ export default {
     this.getMapChart()
   },
   methods: {
-    // 设置折线图
+    // echarts初始化
     getMapChart() {
       this.mapChart = this.$echart.init(document.getElementById('mapChart'))
 
@@ -92,51 +87,19 @@ export default {
       //   console.log(params)
       // })
 
+      // 省级地图
       const provinceName = {
         '青海省': qinghai,
         '内蒙古自治区': neimenggu
       }
+      // 市级地图
       const cityName = {
         '锡林郭勒盟': xilinguole
       }
-      const map = {
-        2: [{
-              type: 'map',
-              map: 'province',
-              label: {
-                show: true
-              },
-              itemStyle: {
-                  areaColor: '#f1b290',
-              },
-              zoom: 1,
-              roam: true
-          }],
-        3: [{
-              type: 'map',
-              map: 'city',
-              name: '降雨量',
-              label: {
-                show: true
-              },
-              zoom: 1,
-              roam: true,
-              data: [ // 设置视觉映射数据
-                {name: '东乌珠穆沁旗', value: 100},
-                {name: '西乌珠穆沁旗', value: 500},
-                {name: '锡林浩特市', value: 1100},
-                {name: '阿巴嘎旗', value: 3300},
-                {name: '正蓝旗', value: 900},
-                {name: '多伦县', value: 350},
-                {name: '正镶白旗', value: 2100},
-                {name: '太仆寺旗', value: 1900},
-                {name: '苏尼特左旗', value: 4500},
-                {name: '苏尼特右旗', value: 2800},
-                {name: '二连浩特市', value: 3560},
-                {name: '镶黄旗', value: 789},
-              ]
-          }]
-      }
+
+      // 获取地图数据
+      const map = this.getMap()
+     
       // 点击地图省份
       this.mapChart.on('click', (params) => {
         console.log(params)
@@ -181,6 +144,51 @@ export default {
           }
       });
     },
+
+    // 获取地图数据
+    getMap () {
+      const visualData = [ // 锡林郭勒盟映射数据,可以自己增加额外属性
+        {name: '东乌珠穆沁旗', value: 100, level: 3},
+        {name: '西乌珠穆沁旗', value: 500, level: 3},
+        {name: '锡林浩特市', value: 1100, level: 3},
+        {name: '阿巴嘎旗', value: 3300, level: 3},
+        {name: '正蓝旗', value: 900},
+        {name: '多伦县', value: 350},
+        {name: '正镶白旗', value: 2100},
+        {name: '太仆寺旗', value: 1900},
+        {name: '苏尼特左旗', value: 4500},
+        {name: '苏尼特右旗', value: 2800},
+        {name: '二连浩特市', value: 3560},
+        {name: '镶黄旗', value: 789},
+      ]
+      const map = {
+        2: [{
+              type: 'map',
+              map: 'province',
+              label: {
+                show: true
+              },
+              itemStyle: {
+                  areaColor: '#f1b290',
+              },
+              zoom: 1,
+              roam: true
+          }],
+        3: [{
+              type: 'map',
+              map: 'city',
+              name: '降雨量',
+              label: {
+                show: true
+              },
+              zoom: 1,
+              roam: true,
+              data: visualData // 设置视觉映射数据
+          }
+        ]
+      }
+      return map
+    }
   }
 }
 </script>

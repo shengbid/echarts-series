@@ -125,6 +125,12 @@ export default {
               name: '地图',
               icon: 'pie-chart',
               path: 'mapChart'
+            },
+            {
+              key: '2-5',
+              name: '涟漪地图',
+              icon: 'pie-chart',
+              path: 'effectScatter'
             }
           ]
         }

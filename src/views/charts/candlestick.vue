@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import data from './chartdata/candlestickdata'
+import data from './chartdata/candlestickdata' // 图表数据
 
 export default {
   name: 'candlestickChart',

@@ -75,6 +75,12 @@ const routes = [{
       component: () => import('@/views/charts/map'),
       name: 'mapChart',
       meta: { parentKey: '2', key: '2-4'}
+    },
+    {
+      path: 'effectScatter',
+      component: () => import('@/views/charts/effectScatter'),
+      name: 'effectScatter',
+      meta: { parentKey: '2', key: '2-5'}
     }
   ]
 }]
